@@ -67,7 +67,7 @@
                                                 </td>
                                                 @endfor
 
-                                                <td>200</td>
+                                                <td>{{ $vme[$k] }}</td>
 
 
 
@@ -117,7 +117,7 @@
 
                                         @php
                                                 for($p = 0; $p < $cenarios; $p++){
-                                                $maiores[$p] = -999999;
+                                                $poe[$p] = 0;
                                         }
                                         @endphp
 
@@ -133,13 +133,13 @@
 
                                                         {{ $maiores_tabela[$j] - $investimento[$j][$k] }}
 
-                                                        @if ($maiores[$j] <= intval($maiores_tabela[$j] - $investimento[$j][$k]))
+
 
                                                             @php
-                                                                $maiores[$j] = intval($maiores_tabela[$j] - $investimento[$j][$k])
+                                                                $poe[$k] += intval($maiores_tabela[$j] - $investimento[$j][$k]) * ($cenario[$j]/100)
                                                             @endphp
 
-                                                        @endif
+
 
                                                     @else
 
@@ -150,14 +150,14 @@
                                                 </td>
                                                 @endfor
 
-                                                @if (min($maiores) == $maiores[$k])
+                                                @if (min($poe) == $poe[$k])
                                                     <td style="background-color: lime">
-                                                        {{ $maiores[$k] }}
+                                                        {{ $poe[$k] }}
                                                     </td>
                                                 @else
 
                                                     <td>
-                                                        {{ $maiores[$k] }}
+                                                        {{ $poe[$k] }}
                                                     </td>
 
                                                 @endif

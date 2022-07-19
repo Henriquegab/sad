@@ -116,22 +116,22 @@ class sadRiscoController extends Controller
         //     }
         //     $laplace[$i-1] = $laplace[$i-1] / $cenarios;
         // }
-        // //Hurwicz
-        // for($k = 0; $k < $investimentos; $k++){
-        //     $hurwicz[$k] = 0;
-        // }
+        //VME
+        for($k = 0; $k < $investimentos; $k++){
+            $vme[$k] = 0;
+        }
 
-        // for($i=1; $i<=$investimentos;$i++){
-        //     for($j=1; $j<=$cenarios;$j++){
+        for($i=1; $i<=$investimentos;$i++){
+            for($j=1; $j<=$cenarios;$j++){
 
-        //             $hurwicz[$i-1] += intval($investimento[$j-1][$i-1]) * ($cenario[$j-1]/100);
+                    $vme[$i-1] += intval($investimento[$j-1][$i-1]) * ($cenario[$j-1]/100);
 
 
-        //         // dd(intval($investimento[$i-1][$j-1]));
+                // dd(intval($investimento[$i-1][$j-1]));
 
-        //     }
+            }
 
-        // }
+        }
         //Maiores
         for($k = 0; $k < $investimentos; $k++){
             $maiores_tabela[$k] = -999999;
@@ -155,7 +155,7 @@ class sadRiscoController extends Controller
 
 
 
-        return view('risco.tabela', ['cenarios' => $cenarios, 'investimentos' => $investimentos, 'cenario' => $cenario, 'investimento' => $investimento, 'maximax' => $maximax, 'maximin' => $maximin, 'maiores_tabela' => $maiores_tabela]);
+        return view('risco.tabela', ['cenarios' => $cenarios, 'investimentos' => $investimentos, 'cenario' => $cenario, 'investimento' => $investimento, 'maximax' => $maximax, 'maximin' => $maximin, 'maiores_tabela' => $maiores_tabela, 'vme' => $vme]);
     }
 
     /**
