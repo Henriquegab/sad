@@ -15,6 +15,10 @@ class sadController extends Controller
     {
 
     }
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.

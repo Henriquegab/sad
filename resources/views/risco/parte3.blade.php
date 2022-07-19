@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Incerteza Parte 1</title>
+        <title>Parte 3</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,24 +28,64 @@
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Algoritmo SAD</h3>
+                    <h3>Algoritmo SAD <small>({{ $cenarios }} cenarios e {{ $investimentos }} investimentos)</small></h3>
                     <br>
-                    <form method="post" action="{{route('risco.parte2')}}" autocomplete="off">
+                    <form method="post" action="{{ route('risco.tabela') }}" autocomplete="off">
                         @csrf
-                        <div class="form-group">
-                            <label>Número de Cenários:</label>
-                            <input type="number" class="form-control" name="cenarios" required>
-                            {{$errors->has('cenarios') ? $errors->first('cenarios') : ''}}
-                        </div>
-                        <div class="form-group">
-                            <label>Numero de investimentos:</label>
-                            <input type="number" class="form-control" name="investimentos" required>
-                            {{$errors->has('investimentos') ? $errors->first('investimentos') : ''}}
-                        </div>
+
+                        <input type="hidden" name="cenarios" value="{{ $cenarios }}">
+                        <input type="hidden" name="investimentos" value="{{ $investimentos }}">
+                        @foreach ($cenario as $valor)
+                            <input type="hidden" name="cenario[]" value="{{ $valor }}">
+                        @endforeach
+
+
+
+
+                                <label>Inserção de investimentos</label>
+                                <br>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nº</th>
+
+                                            @for ($i = 0; $i< $cenarios; $i++)
+                                                <th>Cenario {{ $i+1 }} {{ $cenario[$i] }}%</th>
+
+                                            @endfor
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @for ($k = 0; $k< $investimentos; $k++)
+                                            <tr>
+                                                <td>INV {{ $k+1 }}</td>
+
+                                                @for ($j = 0; $j< $cenarios; $j++)
+                                                <td>
+                                                    <input name="investimento[{{ $j }}][{{ $k }}]"  type="number" step="any" class="form-control" placeholder="Valor em %">
+                                                </td>
+                                                @endfor
+                                            </tr>
+
+                                        @endfor
+
+
+
+
+                                    </tbody>
+
+                                </table>
+
+
+
+
+
+
 
                         <br>
 
-                        <button type="submit" class="btn btn-default col-auto">Continuar</button>
+                        <button type="submit" class="btn btn-success">Continuar</button>
                     </form>
                 </div>
             </div>

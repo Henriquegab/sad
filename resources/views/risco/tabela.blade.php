@@ -29,7 +29,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <form method="post" action="{{ route('incerteza.store') }}" autocomplete="off">
+                    <form method="post" action="{{ route('incerteza.tabela') }}" autocomplete="off">
                         @csrf
 
                         <input type="hidden" name="cenarios" value="{{ $cenarios }}">
@@ -50,17 +50,9 @@
                                             @endfor
 
                                             <th>
-                                                MaxiMax
+                                                VME
                                             </th>
-                                            <th>
-                                                MaxiMin
-                                            </th>
-                                            <th>
-                                                Laplace
-                                            </th>
-                                            <th>
-                                                Hurwicz
-                                            </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,52 +67,8 @@
                                                 </td>
                                                 @endfor
 
-                                                @if (max($maximax) == $maximax[$k])
-                                                    <td style="background-color: lime">
-                                                        {{ $maximax[$k] }}
-                                                    </td>
-                                                @else
+                                                <td>200</td>
 
-                                                    <td>
-                                                        {{ $maximax[$k] }}
-                                                    </td>
-
-                                                @endif
-
-                                                @if (min($maximin) == $maximin[$k])
-                                                    <td style="background-color: lime">
-                                                        {{ $maximin[$k] }}
-                                                    </td>
-                                                @else
-
-                                                    <td>
-                                                        {{ $maximin[$k] }}
-                                                    </td>
-
-                                                @endif
-                                                @if (max($laplace) == $laplace[$k])
-                                                    <td style="background-color: lime">
-                                                        {{ $laplace[$k] }}
-                                                    </td>
-                                                @else
-
-                                                    <td>
-                                                        {{ $laplace[$k] }}
-                                                    </td>
-
-                                                @endif
-
-                                                @if (max($hurwicz) == $hurwicz[$k])
-                                                    <td style="background-color: lime">
-                                                        {{ $hurwicz[$k] }}
-                                                    </td>
-                                                @else
-
-                                                    <td>
-                                                        {{ $hurwicz[$k] }}
-                                                    </td>
-
-                                                @endif
 
 
 

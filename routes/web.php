@@ -32,5 +32,8 @@ Route::get('/risco-parte1', function () {
 Route::post('/incerteza-parte2', [sadController::class, 'create'])->name('incerteza.parte2');
 Route::post('/incerteza-parte3', [sadController::class, 'parte3create'])->name('incerteza.parte3');
 Route::post('/incerteza-tabela', [sadController::class, 'tabela'])->name('incerteza.tabela');
+Route::post('/incerteza-store', [sadController::class, 'store'])->name('incerteza.store');
 
-Route::post('/risco-parte2', [sadRiscoController::class, 'index'])->name('risco.parte2');
+Route::post('/risco-parte2', [sadRiscoController::class, 'create'])->name('risco.parte2');
+Route::post('/risco-parte3', [sadRiscoController::class, 'parte3create'])->name('risco.parte3');
+Route::post('/risco-tabela', [sadRiscoController::class, 'tabela'])->name('risco.tabela');
