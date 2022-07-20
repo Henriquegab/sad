@@ -37,3 +37,4 @@ Route::post('/incerteza-store', [sadController::class, 'store'])->name('incertez
 Route::post('/risco-parte2', [sadRiscoController::class, 'create'])->name('risco.parte2');
 Route::post('/risco-parte3', [sadRiscoController::class, 'parte3create'])->name('risco.parte3');
 Route::post('/risco-tabela', [sadRiscoController::class, 'tabela'])->name('risco.tabela');
+Route::post('/risco-store', [sadRiscoController::class, 'store'])->name('risco.store');

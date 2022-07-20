@@ -29,11 +29,47 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <form method="post" action="{{ route('incerteza.tabela') }}" autocomplete="off">
+                    <form method="post" action="{{ route('risco.store') }}" autocomplete="off">
                         @csrf
 
                         <input type="hidden" name="cenarios" value="{{ $cenarios }}">
                         <input type="hidden" name="investimentos" value="{{ $investimentos }}">
+                        {{-- <input type="hidden" name="ambiente" value="1">
+
+                        @foreach ($cenario as $valor)
+                            <input type="hidden" name="cenario[]" value="{{ $valor }}">
+                        @endforeach
+
+                        @for ($l = 0; $l < $investimentos; $l++)
+                            @foreach ($investimento[$l] as $valor)
+                            <input type="hidden" name="investimento[{{ $l }}][]" value="{{ $valor }}">
+                            @endforeach
+                        @endfor
+
+
+
+
+
+                        @foreach ($maximax as $valor)
+                            <input type="hidden" name="maximax[]" value="{{ $valor }}">
+                        @endforeach
+                        @foreach ($maximin as $valor)
+                            <input type="hidden" name="maximin[]" value="{{ $valor }}">
+                        @endforeach
+                        @foreach ($maiores_tabela as $valor)
+                            <input type="hidden" name="maiores_tabela[]" value="{{ $valor }}">
+                        @endforeach
+                        @foreach ($vme as $valor)
+                            <input type="hidden" name="vme[]" value="{{ $valor }}">
+                        @endforeach --}}
+
+
+
+
+
+
+
+
 
 
 
@@ -181,7 +217,7 @@
                                     <thead>
                                         <tr>
                                             <th style="border: 1px solid black;" >Nº</th>
-                                            <th style="border: 1px solid black;" class="text-center" colspan="3"> Custo de Oportunidade</th>
+                                            <th style="border: 1px solid black;" class="text-center" colspan="{{ $cenarios }}"> Custo de Oportunidade</th>
 
                                             {{-- @for ($i = 0; $i< $cenarios -1; $i++)
                                                 <th></th>
@@ -224,14 +260,14 @@
 
                                                     @else
 
-                                                        -
+                                                        {{ $poe[$k] = "-" }}
 
                                                     @endif
 
                                                 </td>
                                                 @endfor
 
-                                                @if (min($poe) == $poe[$k])
+                                                @if (min($poe) == $poe[$k] &&  $poe[$k] != "-")
                                                     <td style="background-color: lime">
                                                         {{ $poe[$k] }}
                                                     </td>

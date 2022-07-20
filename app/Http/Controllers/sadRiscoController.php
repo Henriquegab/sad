@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\historico;
 use Illuminate\Http\Request;
 
 class sadRiscoController extends Controller
@@ -31,16 +32,7 @@ class sadRiscoController extends Controller
         return view('risco.parte2', ['cenarios' => $cenarios, 'investimentos' => $investimentos]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     public function parte3create(Request $request)
     {
@@ -156,6 +148,21 @@ class sadRiscoController extends Controller
 
 
         return view('risco.tabela', ['cenarios' => $cenarios, 'investimentos' => $investimentos, 'cenario' => $cenario, 'investimento' => $investimento, 'maximax' => $maximax, 'maximin' => $maximin, 'maiores_tabela' => $maiores_tabela, 'vme' => $vme]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        dd($request->all());
+
+        historico::create($request->all());
+
+        dd(1);
     }
 
     /**
