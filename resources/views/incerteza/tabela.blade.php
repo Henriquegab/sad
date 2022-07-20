@@ -181,24 +181,27 @@
 
                                                 @for ($j = 0; $j< $cenarios; $j++)
                                                 <td>
+                                                    @if ($j < $investimentos)
+                                                            @if ($investimento[$j][$k] != $maiores_tabela[$j])
 
-                                                    @if ($investimento[$j][$k] != $maiores_tabela[$j])
+                                                            {{ $maiores_tabela[$j] - $investimento[$j][$k] }}
 
-                                                        {{ $maiores_tabela[$j] - $investimento[$j][$k] }}
+                                                            @if ($maiores[$j] <= intval($maiores_tabela[$j] - $investimento[$j][$k]))
 
-                                                        @if ($maiores[$j] <= intval($maiores_tabela[$j] - $investimento[$j][$k]))
+                                                                @php
+                                                                    $maiores[$j] = intval($maiores_tabela[$j] - $investimento[$j][$k])
+                                                                @endphp
 
-                                                            @php
-                                                                $maiores[$j] = intval($maiores_tabela[$j] - $investimento[$j][$k])
-                                                            @endphp
+                                                            @endif
+
+                                                        @else
+
+                                                            {{ $maiores[$j] = "-" }}
 
                                                         @endif
-
-                                                    @else
-
-                                                        {{ $maiores[$j] = "-" }}
-
                                                     @endif
+
+
 
                                                 </td>
                                                 @endfor

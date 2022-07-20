@@ -134,14 +134,17 @@ class sadController extends Controller
 
         for($i=1; $i<=$cenarios;$i++){
             for($j=1; $j<=$investimentos;$j++){
-                if(intval($investimento[$i-1][$j-1]) >= $maiores_tabela[$i-1]){
-                    if(!(intval($investimento[$i-1][$j-1]) == $maximax[$i-1])){
-                        $maiores_tabela[$i-1] = intval($investimento[$i-1][$j-1]);
+                if($i <= $investimentos){
+                    if(intval($investimento[$i-1][$j-1]) >= $maiores_tabela[$i-1]){
+                        if(!(intval($investimento[$i-1][$j-1]) == $maximax[$i-1])){
+                            $maiores_tabela[$i-1] = intval($investimento[$i-1][$j-1]);
+                        }
+
+
+
                     }
-
-
-
                 }
+
                 // dd(intval($investimento[$i-1][$j-1]));
 
             }

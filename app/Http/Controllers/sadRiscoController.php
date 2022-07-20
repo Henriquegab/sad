@@ -129,6 +129,8 @@ class sadRiscoController extends Controller
             $maiores_tabela[$k] = -999999;
         }
 
+
+
         for($i=1; $i<=$cenarios;$i++){
             for($j=1; $j<=$investimentos;$j++){
                 if(intval($investimento[$i-1][$j-1]) >= $maiores_tabela[$i-1]){
