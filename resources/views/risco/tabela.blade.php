@@ -67,7 +67,12 @@
                                                 </td>
                                                 @endfor
 
-                                                <td>{{ $vme[$k] }}</td>
+                                                @if ($vme[$k] == max($vme))
+                                                    <td style="background-color: lime">{{ $vme[$k] }}</td>
+                                                @else
+                                                    <td>{{ $vme[$k] }}</td>
+                                                @endif
+
 
 
 
@@ -93,6 +98,82 @@
 
                         <hr>
 
+                        <table class="table">
+
+                            <thead>
+                                <tr>
+                                    <th></th>
+
+                                    @for ($i = 0; $i< $cenarios; $i++)
+                                        <th>C{{ $i+1 }} {{ $cenario[$i] }}%</th>
+
+                                    @endfor
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>Inv.perf</td>
+
+                                    @for ($x = 0; $x < $cenarios; $x++)
+                                        @foreach ($investimento[$x] as $inv)
+                                            @if (max($investimento[$x]) == $inv)
+                                                <td>{{ $inv }}</td>
+                                            @endif
+
+                                        @endforeach
+
+                                    @endfor
+
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Inv.Perf.Pond
+                                    </td>
+
+                                    @php
+                                        $vme_veip = 0;
+                                    @endphp
+
+                                    @for ($x = 0; $x < $cenarios; $x++)
+                                        @foreach ($investimento[$x] as $inv)
+                                            @if (max($investimento[$x]) == $inv)
+                                                <td>{{ $inv * ($cenario[$x]/100) }}</td>
+                                                @php
+                                                    $vme_veip += $inv * ($cenario[$x]/100)
+                                                @endphp
+                                            @endif
+
+                                        @endforeach
+
+                                    @endfor
+
+                                    <td>{{ $vme_veip }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        VEIP=
+                                    </td>
+                                    <td>
+                                        {{ $vme_veip - max($vme) }}
+                                    </td>
+                                </tr>
+
+
+
+
+                            </tbody>
+
+                        </table>
+
+                        <hr>
+
 
                         <label>Custo de Oportunidade</label>
                                 <br>
@@ -108,7 +189,7 @@
                                             @endfor --}}
 
                                             <th style="border: 1px solid black;">
-                                                Maiores
+                                                Perdas Ponderadas
                                             </th>
 
                                         </tr>

@@ -63,7 +63,7 @@
 
                                                 @for ($j = 0; $j< $cenarios; $j++)
                                                 <td>
-                                                    <input name="investimento[{{ $j }}][{{ $k }}]"  type="number" step="any" class="form-control" placeholder="Valor em %">
+                                                    <input name="investimento[{{ $j }}][{{ $k }}]"  type="number" step="any" class="form-control">
                                                 </td>
                                                 @endfor
                                             </tr>
