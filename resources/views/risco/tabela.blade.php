@@ -240,6 +240,11 @@
 
                                         $pivo = 0;
 
+
+                                        function min_not_null(Array $values) {
+                                            return min(array_diff(array_map('intval', $values), array(0)));
+                                        }
+
                                         @endphp
 
 
