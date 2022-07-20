@@ -152,7 +152,7 @@
                                     <thead>
                                         <tr>
                                             <th style="border: 1px solid black;" >Nº</th>
-                                            <th style="border: 1px solid black;" class="text-center" colspan="3"> Custo de Oportunidade</th>
+                                            <th style="border: 1px solid black;" class="text-center" colspan="{{ $cenarios }}"> Custo de Oportunidade</th>
 
                                             {{-- @for ($i = 0; $i< $cenarios -1; $i++)
                                                 <th></th>
@@ -170,6 +170,7 @@
                                         @php
                                                 for($p = 0; $p < $cenarios; $p++){
                                                 $maiores[$p] = -999999;
+                                                $pivo = 0;
                                         }
                                         @endphp
 
@@ -195,25 +196,35 @@
 
                                                     @else
 
-                                                        -
+                                                        {{ $maiores[$j] = "-" }}
 
                                                     @endif
 
                                                 </td>
                                                 @endfor
 
-                                                @if (min($maiores) == $maiores[$k])
+                                                @if ($pivo < $cenarios)
+                                                    @if (min($maiores) == $maiores[$pivo] && $maiores[$pivo] != "-")
                                                     <td style="background-color: lime">
-                                                        {{ $maiores[$k] }}
+                                                        {{ $maiores[$pivo] }}
                                                     </td>
-                                                @else
+                                                    @else
 
-                                                    <td>
-                                                        {{ $maiores[$k] }}
-                                                    </td>
+                                                        <td>
+                                                            {{ $maiores[$pivo] }}
+                                                        </td>
 
+                                                    @endif
                                                 @endif
 
+
+
+                                                @php
+                                                    if($pivo < $cenarios){
+                                                        $pivo++;
+                                                    }
+
+                                                @endphp
 
 
 

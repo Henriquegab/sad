@@ -235,16 +235,24 @@
                                         @php
                                                 for($p = 0; $p < $cenarios; $p++){
                                                 $poe[$p] = 0;
+
                                         }
+
+                                        $pivo = 0;
+
                                         @endphp
 
 
                                         @for ($k = 0; $k< $investimentos; $k++)
+                                        @php
+                                                        $verificador = 0;
+                                                @endphp
                                             <tr>
                                                 <td>INV {{ $k+1 }}</td>
 
                                                 @for ($j = 0; $j< $cenarios; $j++)
                                                 <td>
+
 
                                                     @if ($investimento[$j][$k] != $maiores_tabela[$j])
 
@@ -253,32 +261,58 @@
 
 
                                                             @php
-                                                                $poe[$k] += intval($maiores_tabela[$j] - $investimento[$j][$k]) * ($cenario[$j]/100)
+                                                                $poe[$k] += floatval($maiores_tabela[$j]) - floatval($investimento[$j][$k]) * floatval(($cenario[$j]/100))
                                                             @endphp
 
 
 
                                                     @else
 
-                                                        {{ $poe[$k] = "-" }}
+                                                        @if ($verificador == 0)
+                                                            -
+                                                            @php
+                                                                $verificador = 1;
+                                                            @endphp
+                                                        @else
+                                                            0
+                                                        @endif
+
+
+
+
+                                                        {{ $poe[$k] = NULL }}
 
                                                     @endif
+
+
 
                                                 </td>
                                                 @endfor
 
-                                                @if (min($poe) == $poe[$k] &&  $poe[$k] != "-")
-                                                    <td style="background-color: lime">
-                                                        {{ $poe[$k] }}
-                                                    </td>
-                                                @else
 
-                                                    <td>
-                                                        {{ $poe[$k] }}
-                                                    </td>
 
-                                                @endif
+                                               @if ($pivo < $cenarios)
 
+                                                        @if (min($poe) == $poe[$pivo] &&  $poe[$pivo] != 0)
+                                                        <td style="background-color: lime">
+                                                            {{ $poe[$pivo] }}
+                                                        </td>
+                                                    @else
+
+                                                        <td>
+                                                            {{ $poe[$pivo] }}
+                                                        </td>
+
+                                                    @endif
+
+                                               @endif
+
+                                                @php
+                                                    if($pivo < $cenarios){
+                                                        $pivo++;
+                                                    }
+
+                                                @endphp
 
 
 
