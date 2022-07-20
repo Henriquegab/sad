@@ -261,7 +261,18 @@
 
 
                                                             @php
-                                                                $poe[$k] += floatval($maiores_tabela[$j]) - floatval($investimento[$j][$k]) * floatval(($cenario[$j]/100))
+
+                                                                if (isset($poe[$k])) {
+
+
+                                                                    $subtração = floatval($maiores_tabela[$j]) - floatval($investimento[$j][$k]);
+
+                                                                    $cenario_p = $cenario[$j] / 100;
+
+                                                                    $poe[$k] += $subtração * $cenario_p;
+                                                                    // dd(floatval($maiores_tabela[$j]) - floatval($investimento[$j][$k]) * ($cenario[$j] / 100));
+                                                                }
+
                                                             @endphp
 
 
@@ -278,9 +289,11 @@
                                                         @endif
 
 
+                                                        {{-- @php
+                                                            $poe[$k] = 0
+                                                        @endphp --}}
 
 
-                                                        {{ $poe[$k] = NULL }}
 
                                                     @endif
 
